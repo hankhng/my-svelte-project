@@ -1,6 +1,9 @@
 <script>
-  export let average;
-  export let count;
+  import { FeedbackStore } from '../stores'
+
+  $: feedbackSum = $FeedbackStore.reduce((sum, item) => sum + item.rating, 0)
+  $: count = $FeedbackStore.length
+  $: average = count > 0 ? feedbackSum / count : 0
 </script>
 
 <div class="feedback-stats">
